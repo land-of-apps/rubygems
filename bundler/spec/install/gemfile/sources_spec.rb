@@ -381,7 +381,7 @@ RSpec.describe "bundle install with gems on multiple sources" do
       end
 
       it "does not install the gem" do
-        expect(err).to include("Could not find gem 'not_in_repo1'")
+        expect(err).to include("Could not find gem 'not_in_repo1")
       end
     end
 
