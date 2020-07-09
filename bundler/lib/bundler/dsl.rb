@@ -193,8 +193,6 @@ module Bundler
         "root_path" => gemfile_root,
         "gemspec" => gemspecs.find {|g| g.name == options["name"] }
       )
-      source = @sources.add_path_source(source_options)
-
       unless block_given?
         msg = "You can no longer specify a path source by itself. Instead, \n" \
               "either use the :path option on a gem, or specify the gems that \n" \
@@ -206,8 +204,10 @@ module Bundler
 
         SharedHelpers.major_deprecation(2, msg.strip)
 
-        @global_path_sources << source
+        source_options["global"] = true
       end
+
+      source = @sources.add_path_source(source_options)
 
       with_source(source, &blk)
     end
