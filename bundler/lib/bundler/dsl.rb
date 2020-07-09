@@ -450,8 +450,9 @@ repo_name ||= user_name
     def check_primary_source_safety
       if @global_rubygems_sources.size <= 1 && @global_path_sources.size == 0
         Bundler.settings.temporary(:disable_multisource => true)
-        return
       end
+
+      return if @global_rubygems_sources.size <= 1
 
       if Bundler.feature_flag.bundler_3_mode?
         msg = "This Gemfile contains multiple primary sources. " \
