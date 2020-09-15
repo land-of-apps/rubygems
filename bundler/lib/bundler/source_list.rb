@@ -60,7 +60,7 @@ module Bundler
     end
 
     def default_source
-      global_rubygems_source || @rubygems_aggregate
+      global_path_source || global_rubygems_source || @rubygems_aggregate
     end
 
     def rubygems_sources
